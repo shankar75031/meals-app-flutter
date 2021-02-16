@@ -10,6 +10,7 @@ class CategoriesScreen extends StatelessWidget {
         title: Text('Homely Meals'),
       ),
       body: GridView(
+        padding: const EdgeInsets.all(15),
         children: DUMMY_CATEGORIES.map((category) {
           return CategoryItem(category.title, category.color);
         }).toList(),
