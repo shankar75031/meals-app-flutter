@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:homely_meals/screens/categories_screen.dart';
 import 'package:homely_meals/screens/category_meals_screen.dart';
 import 'package:homely_meals/screens/meal_detail_screen.dart';
+import 'package:homely_meals/screens/tabs_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       // home: CategoriesScreen(),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => CategoriesScreen(),
+        '/': (ctx) => TabsScreen(),
         CategoryMealsScreen.ROUTE_NAME: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.ROUTE_NAME: (ctx) => MealDetailScreen(),
       },
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       },
       onUnknownRoute: (settings) {
         // Reached when flutter failed to build a screen. Kind of like a 404 page in web
-        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+        return MaterialPageRoute(builder: (ctx) => TabsScreen());
       },
     );
   }
