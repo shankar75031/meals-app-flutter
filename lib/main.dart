@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homely_meals/widgets/categories_screen.dart';
+import 'package:homely_meals/widgets/category_meals.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: CategoriesScreen(),
+      routes: {'/category-meals': (ctx) => CategoryMealsScreen()},
     );
   }
 }
