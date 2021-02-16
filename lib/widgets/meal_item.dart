@@ -3,6 +3,7 @@ import 'package:homely_meals/models/meal.dart';
 import 'package:homely_meals/screens/meal_detail_screen.dart';
 
 class MealItem extends StatelessWidget {
+  final String id;
   final String title;
   final String imageUrl;
   final int duration;
@@ -10,6 +11,7 @@ class MealItem extends StatelessWidget {
   final Affordability affordability;
 
   MealItem({
+    @required this.id,
     @required this.title,
     @required this.imageUrl,
     @required this.duration,
@@ -50,7 +52,8 @@ class MealItem extends StatelessWidget {
   }
 
   void _selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(MealDetailScreen.ROUTE_NAME);
+    Navigator.of(context)
+        .pushNamed(MealDetailScreen.ROUTE_NAME, arguments: {'id': id});
   }
 
   @override
