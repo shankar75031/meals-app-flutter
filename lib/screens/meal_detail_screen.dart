@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:homely_meals/dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  static const ROUTE_NAME = 'meal-details';
+  static const ROUTE_NAME = '/meal-details';
 
   Widget buildSectionTitle(BuildContext context, String text) {
     return Container(

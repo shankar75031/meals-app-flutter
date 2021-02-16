@@ -3,7 +3,7 @@ import 'package:homely_meals/widgets/meal_item.dart';
 import '../dummy_data.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
-  static const ROUTE_NAME = 'category-meals';
+  static const ROUTE_NAME = '/category-meals';
 
   // final String categoryId;
   // final String categoryTitle;
