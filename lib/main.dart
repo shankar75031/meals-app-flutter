@@ -24,6 +24,26 @@ class _MyAppState extends State<MyApp> {
   };
 
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favouriteMeals = [];
+
+  void _toggleFavourite(String mealId) {
+    final existingIndex =
+        _favouriteMeals.indexWhere((meal) => meal.id == mealId);
+    if (existingIndex >= 0) {
+      setState(() {
+        _favouriteMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favouriteMeals
+            .add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+      });
+    }
+  }
+
+  bool _isMealFavourite(String mealId) {
+    return _favouriteMeals.any((meal) => meal.id == mealId);
+  }
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
@@ -70,10 +90,11 @@ class _MyAppState extends State<MyApp> {
       // home: CategoriesScreen(),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => TabsScreen(),
+        '/': (ctx) => TabsScreen(_favouriteMeals),
         CategoryMealsScreen.ROUTE_NAME: (ctx) =>
             CategoryMealsScreen(_availableMeals),
-        MealDetailScreen.ROUTE_NAME: (ctx) => MealDetailScreen(),
+        MealDetailScreen.ROUTE_NAME: (ctx) =>
+            MealDetailScreen(_toggleFavourite, _isMealFavourite),
         FiltersScreen.ROUTE_NAME: (ctx) => FiltersScreen(_filters, _setFilters),
       },
       onGenerateRoute: (settings) {
@@ -83,7 +104,7 @@ class _MyAppState extends State<MyApp> {
       },
       onUnknownRoute: (settings) {
         // Reached when flutter failed to build a screen. Kind of like a 404 page in web
-        return MaterialPageRoute(builder: (ctx) => TabsScreen());
+        return MaterialPageRoute(builder: (ctx) => TabsScreen(_favouriteMeals));
       },
     );
   }

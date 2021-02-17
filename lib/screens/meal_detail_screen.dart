@@ -4,6 +4,11 @@ import 'package:homely_meals/dummy_data.dart';
 class MealDetailScreen extends StatelessWidget {
   static const ROUTE_NAME = '/meal-details';
 
+  Function _addToFavoruites;
+  Function _isFavourite;
+
+  MealDetailScreen(this._addToFavoruites, this._isFavourite);
+
   Widget buildSectionTitle(BuildContext context, String text) {
     return Container(
       child: Text(
@@ -91,10 +96,11 @@ class MealDetailScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
-          Icons.delete,
+          _isFavourite(mealId) ? Icons.star : Icons.star_border,
         ),
         onPressed: () {
-          Navigator.of(context).pop(mealId);
+          // Navigator.of(context).pop(mealId);
+          _addToFavoruites(mealId);
         },
       ),
     );
